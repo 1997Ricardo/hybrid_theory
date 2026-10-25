@@ -3,7 +3,7 @@
    Comunicación con Google Apps Script
    ====================================================== */
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbxZBl0Ijzr_PE0hun_tYbM4qqi_VAZfyxGBAj13tpAA1NJTo9IpUY6GqBLf3lOzd5lp/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbzsN4Y4YPcljBaKjzi8k3cOM86UxVNuWn8m7KtTGyia7DAB8E2W9LiwmHXEJo3fn0nN/exec';
 
 /* ======================================================
    CONFIGURACIÓN DE ACCIONES
