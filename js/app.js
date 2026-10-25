@@ -1,5 +1,3 @@
-// js/app.js
-
 const App = {
     user: null,
     
@@ -2221,7 +2219,7 @@ renderLogin: () => {
         appNode.innerHTML = `
             <div class="auth-wrapper">
                 <div class="auth-card fade-in">
-                    <img src="./asset/logo.png" alt="LionBeat Logo" class="auth-logo" onerror="this.style.display='none';">
+                    <img src="./asset/logo.png" alt="HYBRID THEORY Logo" class="auth-logo" onerror="this.style.display='none';">
                     <p class="auth-subtitle">ELITE PROGRAMMING</p>
                     
                     <form id="loginForm">
@@ -2259,7 +2257,7 @@ renderLogin: () => {
         appNode.innerHTML = `
             <div class="auth-wrapper">
                 <div class="auth-card fade-in">
-                    <img src="./asset/logo.png" alt="LionBeat Logo" class="auth-logo" onerror="this.style.display='none';">
+                    <img src="./asset/logo.png" alt="HYBRID THEORY Logo" class="auth-logo" onerror="this.style.display='none';">
                     <p class="auth-subtitle">SOLICITUD DE ACCESO</p>
                     
                     <form id="registerForm">

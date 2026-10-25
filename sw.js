@@ -1,9 +1,12 @@
+
 // ======================================================
-// LIONBEAT PERFORMANCE SYSTEM
-// Service Worker
+// HYBRID THEORY
+// Training System — Service Worker
 // ======================================================
 
-const CACHE_NAME = 'lionbeat-performance-v8';
+// Cambiar la versión cuando se actualicen los recursos
+// o se modifique el comportamiento de la aplicación.
+const CACHE_NAME = 'hybrid-theory-v1';
 
 const STATIC_ASSETS = [
     './',
@@ -11,7 +14,10 @@ const STATIC_ASSETS = [
     './manifest.json'
 ];
 
-// Instalar nueva versión.
+// ======================================================
+// INSTALACIÓN
+// ======================================================
+
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
@@ -20,13 +26,22 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Activar y retirar las cachés antiguas.
+// ======================================================
+// ACTIVACIÓN
+// Eliminar las cachés antiguas de esta aplicación.
+// ======================================================
+
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys()
             .then((cacheNames) => {
-                const oldCaches = cacheNames
-                    .filter((name) => name !== CACHE_NAME);
+                const oldCaches = cacheNames.filter(
+                    (name) =>
+                        name.startsWith('lionbeat-performance-') ||
+                        name.startsWith('hybrid-theory-')
+                        ? name !== CACHE_NAME
+                        : false
+                );
 
                 return Promise.all(
                     oldCaches.map((name) => caches.delete(name))
@@ -36,7 +51,11 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Gestionar únicamente peticiones GET del mismo origen.
+// ======================================================
+// PETICIONES
+// Solo gestionar GET del mismo origen.
+// ======================================================
+
 self.addEventListener('fetch', (event) => {
     const request = event.request;
 
@@ -46,12 +65,18 @@ self.addEventListener('fetch', (event) => {
 
     const url = new URL(request.url);
 
-    // Nunca interceptar la API ni recursos de otros orígenes.
+    // No interceptar peticiones a otros dominios.
     if (url.origin !== self.location.origin) {
         return;
     }
 
-    // Para la navegación, intentar primero la red.
+    // No almacenar respuestas de API en la caché estática.
+    // Ajusta esta condición si tu API usa otra ruta.
+    if (url.pathname.includes('/api/')) {
+        return;
+    }
+
+    // Para páginas HTML, priorizar la versión de la red.
     if (request.mode === 'navigate') {
         event.respondWith(
             fetch(request)
@@ -78,8 +103,7 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // Para recursos estáticos, priorizar la red y usar caché
-    // como alternativa si no hay conexión.
+    // Para otros recursos: red primero y caché como alternativa.
     event.respondWith(
         fetch(request)
             .then((response) => {

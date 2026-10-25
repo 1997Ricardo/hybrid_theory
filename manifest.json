@@ -1,7 +1,7 @@
 {
-  "name": "LIONBEAT Performance System",
-  "short_name": "LIONBEAT",
-  "description": "Plataforma de programación y seguimiento del rendimiento deportivo.",
+  "name": "HYBRID THEORY Training System",
+  "short_name": "HYBRID THEORY",
+  "description": "Plataforma de entrenamiento, programación y seguimiento del rendimiento deportivo de HYBRID THEORY.",
   "lang": "es",
   "start_url": "./index.html",
   "scope": "./",

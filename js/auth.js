@@ -1,5 +1,5 @@
 // ======================================================
-// LIONBEAT PERFORMANCE SYSTEM
+// HYBRID THEORY SYSTEM
 // Autenticación y gestión de sesión
 // ======================================================
 
